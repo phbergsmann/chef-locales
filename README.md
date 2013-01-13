@@ -29,9 +29,9 @@ end
 License and Author
 ==================
 
-- Author:: Philipp Bergsmann (<p.bergsmann@opendo.at>)
+Author: Philipp Bergsmann (<p.bergsmann@opendo.at>)
 
-Copyright:: 2013 opendo GmbH
+Copyright: 2013 opendo GmbH (http://opendo.at)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
