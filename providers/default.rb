@@ -1,8 +1,8 @@
 action :add do
-  node.set['locales']['available'] = node['locales']['available'] << new_resource.name
-  node.set['locales']['available'] = node.set['locales']['available'].uniq!
+  available = node['locales']['available'] + [ new_resource.name ]
+  node.set['locales']['available'] = available.uniq!
 
-  template "/etc/locale.gen" do
+  template node['locales']['locale-gen-conf-path'] do
     source "locale.gen.erb"
     cookbook "locales"
     owner "root"
