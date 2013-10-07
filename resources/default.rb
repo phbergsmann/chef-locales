@@ -1,6 +1,8 @@
 actions :add
 
-attribute :name, :kind_of => String, :name_attribute => true
+default_action :add
+
+attribute :locales, :kind_of => [String, Array], :name_attribute => true
 
 def initialize(*args)
   super
