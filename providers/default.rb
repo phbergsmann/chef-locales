@@ -1,19 +1,22 @@
+use_inline_resources
+
+# Support whyrun
+def whyrun_supported?
+  true
+end
+
+include Chef::DSL::IncludeRecipe
+
 action :add do
-  available = node['locales']['available'] + [ new_resource.name ]
-  node.set['locales']['available'] = available.uniq!
-
-  template node['locales']['locale-gen-conf-path'] do
-    source "locale.gen.erb"
-    cookbook "locales"
-    owner "root"
-    group "root"
-    mode 00755
+  include_recipe "locales"
+  
+  Array(new_resource.locales).each do |local|
+    execute "locale-gen #{local}" do
+      not_if { locale_available?(local) }
+    end
   end
+end
 
-  execute "dpkg-reconfigure" do
-    command "dpkg-reconfigure --frontend=noninteractive locales"
-    action :run
-  end
-
-  new_resource.updated_by_last_action(true)
+def locale_available?(locale)
+  Mixlib::ShellOut.new("locale -a").run_command.stdout.split.include?(locale)
 end
