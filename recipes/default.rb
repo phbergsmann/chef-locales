@@ -18,4 +18,6 @@ node['locales']['packages'].each do |pack|
   package pack
 end
 
-locales node['locales']['default']
+locales node['locales']['default'] do
+  action :set
+end
