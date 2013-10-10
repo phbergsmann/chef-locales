@@ -1,4 +1,4 @@
-actions :add
+actions :add, :set
 
 default_action :add
 
