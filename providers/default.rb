@@ -16,7 +16,7 @@ action :add do
 end
 
 action :set do
-  if new_resource.locales === String
+  if new_resource.locales.kind_of?(String)
     locales new_resource.locales do
       action :add
     end
@@ -24,7 +24,7 @@ action :set do
       only_if { ENV['LANG'] != new_resource.locales }
     end
   else
-    Log.error('Locales must be a String')
+    Log.error('locales must be a String')
   end
 end
 
