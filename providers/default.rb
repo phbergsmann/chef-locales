@@ -17,6 +17,9 @@ end
 
 action :set do
   if new_resource.locales === String
+    locales new_resource.locales do
+      action :add
+    end
     execute "update-locale LANG=#{new_resource.locales}" do
       only_if { ENV['LANG'] != new_resource.locales }
     end
