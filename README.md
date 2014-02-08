@@ -4,6 +4,11 @@ Description
 This cookbook configures the available and default locales on a debian-like-system.
 It also includes a LWRP for easy use in other cookbooks.
 
+Limitation
+==========
+
+Right now the cookbook *only works with UTF-8 locales*.
+
 Requirements
 ============
 
