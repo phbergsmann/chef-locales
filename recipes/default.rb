@@ -14,9 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-template "/etc/default/locale" do
-  source "locale.erb"
-  owner "root"
-  group "root"
-  mode 00755
+node['locales']['packages'].each do |pack|
+  package pack
 end
+
+locales node['locales']['default']
