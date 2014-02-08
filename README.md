@@ -12,8 +12,7 @@ None
 Attributes
 ==========
 
-* `node[:locales][:available]` -- the locales to be installed. Defaults to "en_US.UTF-8 UTF-8".
-* `node[:locales][:default]` -- the default locale to be installed. Defaults to "en_US.UTF-8".
+* `node[:locales][:default]` -- the default locale to be installed. Defaults to "en_US.utf8".
 
 Usage
 =====
@@ -21,8 +20,20 @@ Usage
 Either use the node-attributes or the included LWRP "locales".
 
 ```ruby
-locales "de_AT.UTF-8 UTF-8" do
-	action :add
+locales "de_AT.utf8" do
+  action :add
+end
+```
+
+```ruby
+locales "Add locales" do
+  locales ["fr_FR.utf8", "fr_BE.utf8", "fr_CA.utf8"]
+end
+```
+
+```ruby
+locales "ru_RU.utf8" do
+  action :set
 end
 ```
 
