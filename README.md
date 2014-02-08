@@ -42,6 +42,12 @@ License and Author
 
 Author: Philipp Bergsmann (<p.bergsmann@opendo.at>)
 
+Thanks for the contributions by:
+* Guilhem Lettron
+* Barthélemy Vessemont
+* Ed Bosher
+* Christian Rodriguez
+
 Copyright: 2013 opendo GmbH (http://opendo.at)
 
 Licensed under the Apache License, Version 2.0 (the "License");
