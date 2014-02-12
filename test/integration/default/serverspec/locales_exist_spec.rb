@@ -9,9 +9,9 @@ RSpec.configure do |c|
   end
 end
 
-describe "Locales" do
+describe 'Locales' do
 
-  it "installs the default locale en_US.utf8" do
+  it 'installs the default locale en_US.utf8' do
     expect(command('locale -a | grep en_US.utf8')).to return_stdout('en_US.utf8')
   end
 

@@ -18,7 +18,7 @@ suites:
   - name: deAT_utf8
     run_list:
       - recipe[locales::default]
-      - recipe[fake::deAT_utf8]
+      - recipe[fake::deat_utf8]
     attributes:
   - name: multiple
     run_list:
