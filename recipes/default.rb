@@ -14,10 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+class Chef::Recipe
+  include ::Locales::Helper
+end
+
 node['locales']['packages'].each do |pack|
   package pack
 end
 
 locales node['locales']['default'] do
   action :set
+end
+
+current_locale.values.uniq.each do |v|
+  locales v
 end
