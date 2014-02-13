@@ -26,6 +26,6 @@ locales node['locales']['default'] do
   action :set
 end
 
-current_locale.values.uniq.each do |v|
+current_locale.values.uniq.compact.each do |v|
   locales v
 end
