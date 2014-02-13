@@ -1,0 +1,17 @@
+---
+driver:
+#  name: docker
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-12.04
+  - name: debian-7.2.0
+
+suites:
+  - name: default
+    run_list:
+      - recipe[locales::default]
+    attributes:
