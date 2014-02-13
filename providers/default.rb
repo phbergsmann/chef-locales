@@ -29,8 +29,14 @@ action :set do
     action :add
   end
 
-  execute "update-locale LANG=#{high_locale(locale)}" do
-    only_if { ENV['LANG'] != high_locale(locale) }
+  env_variables = %w(LANG LANGUAGE)
+  env_variables << 'LC_ALL' if new_resource.lc_all
+
+  env_variables.each do |env_var|
+    ruby_block "update-locale #{env_var} #{locale}" do
+      block { update_locale(env_var, locale) }
+      only_if { ENV[env_var] != high_locale(locale) }
+    end
   end
 end
 
@@ -54,4 +60,10 @@ end
 
 def add_locale(locale)
   execute "locale-gen #{high_locale(locale)}"
+end
+
+def update_locale(variable, locale)
+  cmd = "update-locale #{variable}=#{high_locale(locale)}"
+  Mixlib::ShellOut.new(cmd).run_command
+  ENV[variable] = locale
 end
