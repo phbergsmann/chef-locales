@@ -8,7 +8,12 @@ action :add do
     unless locale_available?(locale)
       case node['platform_family']
         when "debian"
-          file_append_line('/etc/locale.gen', "#{high_locale(locale)} UTF-8")
+          if platform?("ubuntu")
+            locale_path = "/var/lib/locales/supported.d/local"
+          else
+            locale_path = "/etc/locale.gen"
+          end
+          file_append_line(locale_path, "#{high_locale(locale)} UTF-8")
           execute "dpkg-reconfigure" do
             command "dpkg-reconfigure --frontend=noninteractive locales"
             action :run
