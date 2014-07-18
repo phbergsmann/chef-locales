@@ -6,7 +6,7 @@ end
 action :add do
   Array(new_resource.locales).each do |locale|
     unless locale_available?(locale)
-      case node['platform_family']
+      case node['platform']
         when "debian"
           file_append_line('/etc/locale.gen', "#{high_locale(locale)} UTF-8")
           execute "dpkg-reconfigure" do
@@ -54,7 +54,7 @@ def file_append_line(path, line_to_append)
 
   if ::File.exists?(path)
     begin
-      f = ::File.open(path, "r+")
+      f = ::File.open(path, "w+")
 
       found = false
       f.lines.each { |line| found = true if line =~ regex }
@@ -67,7 +67,7 @@ def file_append_line(path, line_to_append)
     end
   else
     begin
-      f = ::File.open(new_resource.path, "w")
+      f = ::File.open(path, "w")
       f.puts line_to_append
     ensure
       f.close
