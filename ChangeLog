@@ -1,3 +1,5 @@
+2014-07-21 b4cdbbe Merge branch 'release/0.3.0' into develop (pbergsmann)
+2014-07-21 7b0aa4b [TASK] Generates ChangeLog (pbergsmann)
 2014-07-21 86eb99b Merge branch 'optiflows-cookbooks-new_lwrp' into develop (pbergsmann)
 2014-02-12 7b73cbe LWRP rewrite (Guilhem Lettron)
 2014-07-18 daa30cf [TASK] Adds integration tests (pbergsmann)
