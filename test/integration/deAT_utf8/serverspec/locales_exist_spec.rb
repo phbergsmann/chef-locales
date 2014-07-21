@@ -9,9 +9,9 @@ RSpec.configure do |c|
   end
 end
 
-describe "Locales" do
+describe 'Locales' do
 
-  it "installs the expected locale de_AT.utf8" do
+  it 'installs the expected locale de_AT.utf8' do
     expect(command('locale -a | grep de_AT.utf8')).to return_stdout('de_AT.utf8')
   end
 
