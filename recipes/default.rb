@@ -14,10 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+::Chef::Recipe.send(:include, Locales::Helper)
+
 node['locales']['packages'].each do |pack|
   package pack
 end
 
 locales node['locales']['default'] do
   action :set
+end
+
+current_locale.values.uniq.compact.each do |v|
+  locales v
 end
