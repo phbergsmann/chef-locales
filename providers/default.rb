@@ -45,38 +45,13 @@ def initialize(name, run_context = nil)
   @new_resource.locales(new_locales)
 end
 
-def parsed_locale(locale)
-  # produce an Array of Hash like
-  # 'fr_FR.UTF-8' give
-  # {"locale"=>"fr_FR", "charmap"=>"UTF-8"}
-  m = /^(?<locale>[\w@]*)\.?(?<charmap>.*)$/.match(locale)
-  Hash[m.names.zip(m.captures)]
-end
-
-def locale_available?(locale)
-  locales_available.include?(low_locale(locale))
-end
-
-def high_locale(locale)
-  p = parsed_locale(locale)
-  ret = p['locale']
-  ret += '.' + p['charmap'].upcase unless p['charmap'].empty?
-  ret
-end
-
-def low_locale(locale)
-  p = parsed_locale(locale)
-  ret = p['locale']
-  ret += '.' + p['charmap'].downcase unless p['charmap'].empty?
-  ret
-end
-
 def add_locale(locale)
   run_context.include_recipe 'locales::install'
 
   ruby_block "add locale #{locale}" do
     block do
-      file = Chef::Util::FileEdit.new(node['locales']['locale_file'])
+      `touch #{node['locales']['locale_file']}`
+      file = Chef::Util::FileEdit.new node['locales']['locale_file']
       line = "#{high_locale(locale)} #{new_resource.charmap}"
       file.insert_line_if_no_match(/^#{line}$/, line)
       file.write_file

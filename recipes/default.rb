@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+extend ::Locales::Helper
+
 node['locales']['packages'].each do |pack|
   package pack
 end
@@ -21,3 +23,12 @@ end
 locales node['locales']['default'] do
   action :set
 end
+
+node['locales']['available'].each do |locale|
+  p = parsed_locale locale
+  locales p['locale'] do
+    charmap p['charmap']
+    action :add
+  end
+end
+
