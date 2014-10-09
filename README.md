@@ -18,6 +18,8 @@ Attributes
 ==========
 
 * `node[:locales][:default]` -- the default locale to be installed. Defaults to "en_US.utf8".
+* `node[:locales][:packages]` -- an array of locales' packages to install
+* `node[:locales][:available]` -- an array of locales to compile
 
 Usage
 =====

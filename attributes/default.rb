@@ -13,3 +13,5 @@ else
 end
 
 default['locales']['default'] = 'en_US.utf8'
+default['locales']['available'] = []
+
