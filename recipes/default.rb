@@ -25,9 +25,7 @@ locales node['locales']['default'] do
 end
 
 node['locales']['available'].each do |locale|
-  p = parsed_locale locale
-  locales p['locale'] do
-    charmap p['charmap']
+  locales locale do
     action :add
   end
 end

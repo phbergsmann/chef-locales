@@ -6,11 +6,11 @@ module Locales
     end
 
     def locales_available
-      Mixlib::ShellOut.new('locale -a').run_command.stdout.split
+      @locale_available ||= Mixlib::ShellOut.new('locale -a').run_command.stdout.split
     end
 
     def locale_available?(locale)
-      locales_available.include?(low_locale(locale))
+      locales_available.include?(locale_a_format(locale))
     end
 
     def locale_pattern
@@ -25,17 +25,25 @@ module Locales
       Hash[m.names.zip(m.captures)]
     end
 
-    def high_locale(locale)
+    def high_locale_format(locale)
       p = parsed_locale(locale)
       ret = p['locale']
       ret += '.' + p['charmap'].upcase unless p['charmap'].empty?
       ret
     end
 
-    def low_locale(locale)
+    def low_locale_format(locale)
       p = parsed_locale(locale)
       ret = p['locale']
       ret += '.' + p['charmap'].downcase unless p['charmap'].empty?
+      ret
+    end
+
+    # locale -a result format
+    def locale_a_format locale
+      p = parsed_locale(locale)
+      ret = p['locale']
+      ret += '.' + p['charmap'].gsub(/[-_]/, '').downcase unless p['charmap'].empty?
       ret
     end
 
