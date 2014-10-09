@@ -41,7 +41,7 @@ end
 
 def initialize(name, run_context = nil)
   super
-  new_locales = Array(new_resource.locales).map { |l| l[locale_pattern] }
+  new_locales = Array(new_resource.locales)
   @new_resource.locales(new_locales)
 end
 
