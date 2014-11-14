@@ -19,6 +19,7 @@ if defined?(ChefSpec)
     ChefSpec::Matchers::ResourceMatcher.new(:locales, :add, lang)
   end
 
+  # rubocop:disable Style/AccessorMethodName
   def set_locales(lang)
     ChefSpec::Matchers::ResourceMatcher.new(:locales, :set, lang)
   end
