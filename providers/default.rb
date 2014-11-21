@@ -22,7 +22,7 @@ action :set do
   Chef::Log.error('Only set 1 locale') if new_resource.locales.count != 1
 
   locale = "#{new_resource.locales[0]}.#{new_resource.charmap}"
-  
+
   locales locale do
     action :add
   end
