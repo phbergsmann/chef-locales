@@ -12,4 +12,4 @@ else
   default['locales']['locale_file'] = '/etc/locale.gen'
 end
 
-default['locales']['default'] = 'en_US.utf8'
+default['locales']['default'] = 'en_US'
