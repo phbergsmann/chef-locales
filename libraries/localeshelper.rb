@@ -1,4 +1,4 @@
-module Locales
+module ChefLocales
   module Helper
     def current_locale
       cmd = Mixlib::ShellOut.new('locale').run_command

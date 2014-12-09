@@ -1,4 +1,4 @@
-include ::Locales::Helper
+include ::ChefLocales::Helper
 
 # Support whyrun
 def whyrun_supported?
