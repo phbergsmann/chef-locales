@@ -5,8 +5,7 @@ else
   default['locales']['packages'] = []
 end
 
-case node['platform']
-when 'ubuntu'
+if  'ubuntu' == node['platform'] && Chef::VersionConstraint.new('< 15.04').include?(node['platform_version'])
   default['locales']['locale_file'] = '/var/lib/locales/supported.d/local'
 else
   default['locales']['locale_file'] = '/etc/locale.gen'
